@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+  <form [formGroup]="registerMenuItemForm" class="container col-md-5 border p-4 rounded"  (ngSubmit)=" insertMenuItem()"  method="post" style="margin-top: 20px;">
+
+        <div class="form-group ">
+            <label for="itemName">Item Name</label>
+            <input type="text" formControlName="itemName" class="form-control" placeholder="Enter item name here"
+                [ngClass]="{ 'is-invalid': submitted 
+        && f['itemName'].errors }">
+            <div *ngIf="submitted && f['itemName'].errors" class="invalid-feedback">Invalid item name</div>
+            <div *ngIf="f['itemName'].errors?.['required']" style="color: red; font-size: small;">Item name is required
+            </div>
+        </div>
+
+
+        <div class="form-group ">
+
+            <label for="description">Description</label>
+            <input type="text" formControlName="description" class="form-control" placeholder="Enter description here"
+                [ngClass]="{ 'is-invalid': submitted 
+        && f['description'].errors }">
+            <div *ngIf="submitted && f['description'].errors" class="invalid-feedback">Invalid data</div>
+            <div *ngIf="f['description'].errors?.['required']" style="color: red;font-size: small;">description is required</div> 
+        </div>
+
+
+
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select formControlName="category" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['category'].errors }">
+                <option *ngFor="let category of categories" [value]="category.categoryId">{{ category.categoryName}}</option>
+            </select>
+            <div *ngIf="submitted && f['category'].errors" class="invalid-feedback">Invalid category selection</div>
+            <div *ngIf="f['category'].errors?.['required']" style="color: red; font-size: small;">Category is required</div>
+        </div>
+        <div class="form-group ">
+            <label for="price">Price</label>
+            <input type="number" formControlName="price" class="form-control" placeholder="Enter price of the item"
+                [ngClass]="{ 'is-invalid': submitted 
+      && f['price'].errors }">
+            <div *ngIf="submitted && f['price'].errors" class="invalid-feedback">Invalid price</div>
+            <div *ngIf="f['price'].errors?.['required']" style="color: red;font-size: small;">price is required</div>
+        </div>
+
+        <div class="form-group ">
+            <label for="availabilityTime">availability Time</label>
+            <input type="text" formControlName="availabilityTime" class="form-control"
+                placeholder="Enter availability time here" [ngClass]="{ 'is-invalid': submitted 
+    && f['availabilityTime'].errors }">
+            <div *ngIf="submitted && f['availabilityTime'].errors" class="invalid-feedback">Invalid data</div>
+            <div *ngIf="f['availabilityTime'].errors?.['required']" style="color: red; font-size: small;">time is required</div>
+        </div>
+
+        <div class="form-group ">
+            <label for="specialDietaryInfo">Special dietary information</label>
+            <input type="text" formControlName="specialDietaryInfo" class="form-control"
+                placeholder="Enter dietary information here(veg/nonveg)" [ngClass]="{ 'is-invalid': submitted 
+    && f['specialDietaryInfo'].errors }">
+            <div *ngIf="submitted && f['specialDietaryInfo'].errors" class="invalid-feedback">Invalid data</div>
+            <div *ngIf="f['specialDietaryInfo'].errors?.['required']" style="color: red; font-size: small;">dietary information is required</div> 
+        </div>
+
+        <div class="form-group ">
+            <label for="name">Taste information</label>
+            <input type="text" formControlName="tasteInfo" class="form-control" placeholder="Enter taste Info name here"
+                [ngClass]="{ 'is-invalid': submitted 
+    && f['tasteInfo'].errors }">
+            <div *ngIf="submitted && f['tasteInfo'].errors" class="invalid-feedback">Invalid data</div>
+             <div *ngIf="f['tasteInfo'].errors?.['required']" style="color: red; font-size: small;">Taste info is required</div>
+        </div>
+
+        <div class="form-group ">
+            <label for="nutritionalInfo">Nutritional Info</label>
+            <input type="text" formControlName="nutritionalInfo" class="form-control"
+                placeholder="Enter nutritional Info here" [ngClass]="{ 'is-invalid': submitted 
+    && f['nutritionalInfo'].errors }">
+            <div *ngIf="submitted && f['nutritionalInfo'].errors" class="invalid-feedback">Invalid data</div>
+             <div *ngIf="f['nutritionalInfo'].errors?.['required']" style="color: red; font-size: small;">nutritional Info is required</div> 
+        </div>
+
+        <div class="form-group ">
+            <label for="name">Cooking Time</label>
+            <input type="number" formControlName="cookingTime" class="form-control"
+                placeholder="Enter cooking time in minutes" [ngClass]="{ 'is-invalid': submitted 
+    && f['cookingTime'].errors }">
+            <div *ngIf="submitted && f['cookingTime'].errors" class="invalid-feedback">Invalid restaurant name</div>
+           
+        </div>
+
+
+
+
+        <div class="form-group">
+            <label for="restaurantId">Restaurant</label>
+            <select formControlName="restaurantId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['restaurantId'].errors }">
+                <option *ngFor="let restaurant of restaurants" [value]="restaurant.restaurantId">{{ restaurant.name }}</option>
+            </select>
+            <div *ngIf="submitted && f['restaurantId'].errors" class="invalid-feedback">Invalid restaurant selection</div>
+            <div *ngIf="f['restaurantId'].errors?.['required']" style="color: red; font-size: small;">Restaurant selection is required</div>
+        </div>
+
+        <div class="form-group">
+            <label for="image">Image</label>
+            <input type="file" (change)="onFileSelected($event)" class="form-control-file">
+        </div>
+
+        <br>
+        <button type="submit" [disabled]="!registerMenuItemForm.valid" class="btn btn-primary">Add menu item</button>
+
+
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,71 @@
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 80px;">
+        <a class="navbar-brand" routerLink="/customer-dashboard"
+            style="font-size: x-large;"><strong>HOTBYTE</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <!-- <i class="fa fa-user" style="font-size: 20px; color: white;"></i> -->
+                    <a class="nav-link" [routerLink]="'/orders/'+getCustomerIdFromLocalStorage()">My Orders </a>
+                </li>
+
+                <li class="nav-item">
+                    <!-- <i class="fa fa-shopping-cart" style="font-size: 20px; color: white;"></i> -->
+                    <a class="nav-link" [routerLink]="'/cart/'+getCustomerIdFromLocalStorage()">Cart</a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logout()">Log out</a>
+                </li>
+
+
+            </ul>
+            
+        </div>
+    </nav>
+
+
+
+<!-- Cart total -->
+<div class="container mt-2 mb-2 text-right">
+    <strong>Total: {{ formatCurrency(cartDetails.length > 0 ? cartDetails[0].total : 0) | currency:'INR' }}</strong>
+    <button class="btn btn-primary ml-2" [routerLink]="['/checkout']" (click)="checkout()">Checkout</button>
+    
+     
+
+  </div>
+
+
+<!-- Cart details table -->
+<div class="container mt-4 custom-table-container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Menu Item </th>
+                <th>Quantity</th>
+                <th>Price</th>
+                
+                <th>Individual Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of cartDetails">
+                <td>{{ item.itemName }}</td>
+                <td>
+                    <button (click)="incrementQuantity(item)" class="btn btn-sm btn-success">+</button>
+                    {{ item.quantity }}
+                    <button (click)="decrementQuantity(item)" class="btn btn-sm btn-danger">-</button>
+                </td>
+                <td>{{ item.price |  currency:'INR' }}</td>
+                
+                <td>{{ item.individualTotal |  currency:'INR' }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+

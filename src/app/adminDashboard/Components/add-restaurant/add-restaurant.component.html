@@ -1,0 +1,53 @@
+
+<!-- <p>register-manager works!</p> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form [formGroup]="registerRestaurantForm" class="container col-md-5 border p-4 rounded" (ngSubmit)="insertRestaurant(registerRestaurantForm.value)" method="post" style="margin-top: 20px;">
+
+    <div class="form-group">
+      <label for="name">Restaurant Name</label>
+      <input type="text" formControlName="name" class="form-control" placeholder="Enter restaurant name here" [ngClass]="{ 'is-invalid': submitted && f['name'].errors }">
+      <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">Invalid restaurant name</div>
+      <div *ngIf="f['name'].errors?.['required']" style="color: red; font-size: small;">Restaurant name is required</div>
+      <!-- <div *ngIf="f['name'].errors?.['pattern']" style="color: red;font-size: small;">Invalid restaurant name</div> -->
+    </div>
+  
+    <div class="form-group">
+      <label for="location">Location</label>
+      <input type="text" formControlName="location" class="form-control" placeholder="Enter a valid location here" [ngClass]="{ 'is-invalid': submitted && f['location'].errors }">
+      <div *ngIf="submitted && f['location'].errors" class="invalid-feedback">Invalid location</div>
+      <div *ngIf="f['location'].errors?.['required']" style="color: red;font-size: small;">Location is required</div>
+      <!-- <div *ngIf="f['location'].errors?.['pattern']" style="color: red;font-size: small;">Invalid location</div> -->
+    </div>
+  
+    <div class="form-group">
+      <label for="contactNumber">Contact Number</label>
+      <input type="tel" formControlName="contactNumber" class="form-control" placeholder="Enter a valid contact number here" [ngClass]="{ 'is-invalid': submitted && f['contactNumber'].errors }">
+      <div *ngIf="submitted && f['contactNumber'].errors" class="invalid-feedback">Invalid contact number</div>
+      <div *ngIf="f['contactNumber'].errors?.['required']" style="color: red;font-size: small;">Contact number is required</div>
+      <div *ngIf="f['contactNumber'].errors?.['pattern']" style="color: red;font-size: small;">Invalid contact number format</div>
+    </div>
+  
+    <div class="form-group">
+      <label for="rating">Rating</label>
+      <input type="number" formControlName="rating" class="form-control" placeholder="Enter restaurant's rating between 1-5" [ngClass]="{ 'is-invalid': submitted && f['rating'].errors }" min="1" max="5" step="0.1">
+      <div *ngIf="submitted && f['rating'].errors" class="invalid-feedback">Invalid rating</div>
+      <div *ngIf="f['rating'].errors?.['required']" style="color: red;font-size: small;">Rating is required</div>
+      <div *ngIf="f['rating'].errors?.['min'] || f['rating'].errors?.['max']" style="color: red;font-size: small;">Rating must be between 1 and 5</div>
+    </div>
+  
+    <br>
+    <button type="submit" [disabled]="!registerRestaurantForm.valid" class="btn btn-primary">Register restaurant</button>
+  
+  </form>
+</body>
+
+</html>

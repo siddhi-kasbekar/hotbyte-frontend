@@ -1,0 +1,10 @@
+
+.navbar {
+    z-index: 1000;
+    background-color: #343a40;
+}
+
+/* Set background color for collapsed content */
+.navbar-collapse {
+    background-color: #343a40; 
+}

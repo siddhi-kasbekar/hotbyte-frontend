@@ -1,0 +1,46 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+
+
+
+<body>
+  <div class="menu-wrapper">
+    <div class="sidebar-header">
+      <div class="sideBar">
+        <ul>
+          <li style="font-size:x-large; text-align:justify; margin-top: 6px;">
+            <a routerLink="/manager-dashboard/display-menuitems">
+              <i class="fa fa-home"></i><label> Restaurant
+                Dashboard</label></a>
+          </li><br>
+
+          <li style="text-align:justify; font-size: large; margin-bottom: 2px;"><a
+              routerLink="/manager-dashboard/display-menuitems"><i class="fa fa-cutlery"></i><label>Menu
+                Items</label></a></li>
+          
+          <li style="text-align: justify; font-size: large; margin-bottom: 2px;"><a
+              routerLink="/manager-dashboard/display-orders"><i class="fa fa-list"></i><label>Orders</label></a>
+          </li>
+          <li style="text-align: justify; font-size: large; margin-bottom: 2px;"><a
+            routerLink="/manager-dashboard/display-category"><i class="fa fa-bars"></i><label>Menu Category</label></a>
+          </li>
+
+
+          <li style="text-align: justify; font-size: large; margin-bottom: 2px;" (click)="logout()"><a><i
+                class="fa fa-sign-out"></i><label>Log out</label></a>
+          </li>
+
+        </ul>
+
+      </div>
+      <div class="content">
+        <div class="content-data">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

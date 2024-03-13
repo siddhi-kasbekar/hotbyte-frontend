@@ -1,0 +1,48 @@
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+
+
+
+<body>
+  <div class="menu-wrapper">
+    <div class="sidebar-header">
+      <div class="sideBar">
+
+        
+        <ul>
+          <li style="font-size:x-large; text-align:justify; margin-top: 6px;">
+            <a routerLink="/admin-dashboard/display-restaurant">
+              <i class="fa fa-home"></i><label> Admin
+                Dashboard</label></a>
+          </li><br>
+
+          <li style="text-align:justify; font-size: large; margin-bottom: 2px;"><a
+              routerLink="/admin-dashboard/display-restaurant"><i
+                class="fa fa-building-o"></i><label>Restaurants</label></a></li>
+          <li style="text-align:justify; font-size: large; margin-bottom: 2px;"><a
+              routerLink="/admin-dashboard/display-discounts"><i
+                class="fa fa-percent"></i><label>Discount/offers</label></a></li>
+          <li style="text-align: justify; font-size: large; margin-bottom: 2px;"><a
+              routerLink="/admin-dashboard/display-managers"><i class="fa fa-user-plus"></i><label>Managers</label></a>
+          </li>
+          <li style="text-align: justify; font-size: large; margin-bottom: 2px;"><a
+              routerLink="/admin-dashboard/display-customers"><i class="fa fa-users"></i><label>Customers</label></a>
+          </li>
+
+          <li style="text-align: justify; font-size: large; margin-bottom: 2px;" (click)="logout()"><a><i
+                class="fa fa-sign-out"></i><label>Log out</label></a></li>
+
+        </ul>
+
+      </div>
+      <div class="content">
+        <div class="content-data">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

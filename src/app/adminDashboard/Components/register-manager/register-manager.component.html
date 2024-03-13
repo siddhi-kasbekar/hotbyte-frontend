@@ -1,0 +1,75 @@
+<!-- <p>register-manager works!</p> -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <form [formGroup]="registerManagerForm" class="container col-md-5 border p-4 rounded"  (ngSubmit)="registerManager(registerManagerForm.value)" style="margin-top: 20px;">
+
+    <div class="form-group ">
+        <label for="name"> Enter Name</label>
+        <input type="text" formControlName="name" class="form-control" placeholder="Enter name here" [ngClass]="{ 'is-invalid': submitted 
+        && f['name'].errors }">
+        <div *ngIf="submitted && f['name'].errors" class="invalid-feedback">Invalid name</div>
+        <div *ngIf="f['name'].errors?.['required']" style="color: red; font-size: small;">Name is required</div>
+        <div *ngIf="f['name'].errors?.['pattern']" style="color: red; font-size: small;">Name should contain only text</div>
+    </div>
+  
+    
+    <div class="form-group ">
+        <label for="email">Email</label>
+        <input type="text" formControlName="email" class="form-control" placeholder="Enter a valid email here" [ngClass]="{ 'is-invalid': submitted 
+        && f['email'].errors }">
+        <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">Invalid email</div>
+        <div *ngIf="f['email'].errors?.['required']" style="color: red;font-size: small;">Email is required</div>
+        <div *ngIf="f['email'].errors?.['email']" style="color: red; font-size: small;">invalid email</div>
+    </div>
+  
+   
+  
+     <div class="form-group ">
+
+        <label for="userName">Enter username</label>
+        <input type="" formControlName="userName" class="form-control" placeholder="Enter your email again" [ngClass]="{ 'is-invalid': submitted 
+        && f['userName'].errors }">
+        <div *ngIf="submitted && f['userName'].errors" class="invalid-feedback">Invalid username</div>
+        <div *ngIf="f['userName'].errors?.['required']" style="color: red;font-size: small;">Username is required</div>
+        <div *ngIf="f['userName'].errors?.['pattern']" style="color: red; font-size: small;">invalid username format</div>
+    </div>
+   
+    <div class="form-group ">
+      <label for="password">Enter Password</label>
+      <input type="password" formControlName="password" class="form-control" placeholder="Enter password here" [ngClass]="{ 'is-invalid': submitted 
+      && f['password'].errors }">
+      <div *ngIf="f['password'].errors" class="invalid-feedback" >Invalid password</div>
+      <div *ngIf="f['password'].errors?.['required']" style="color: red;font-size: small;">password is required</div>
+      <div *ngIf="f['password'].errors?.['minLength']" style="color: red; font-size: small;">invalid password format</div>
+  </div>
+
+  <div class="form-group">
+    <label for="restaurantId">Restaurant</label>
+    <select formControlName="restaurantId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['restaurantId'].errors }">
+        <option *ngFor="let restaurant of restaurants" [value]="restaurant.restaurantId">{{ restaurant.name }}</option>
+    </select>
+    <div *ngIf="submitted && f['restaurantId'].errors" class="invalid-feedback">Invalid restaurant selection</div>
+    <div *ngIf="f['restaurantId'].errors?.['required']" style="color: red; font-size: small;">Restaurant selection is required</div>
+    
+</div>
+  
+    <br>
+
+    <button type="submit" [disabled]="!registerManagerForm.valid"  class="btn btn-primary">Register</button>
+  
+  
+  </form>
+</body>
+
+</html>
+
+

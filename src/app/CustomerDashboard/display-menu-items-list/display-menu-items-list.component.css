@@ -1,0 +1,33 @@
+
+  
+  .row {
+    display: flex;
+    align-items: center; 
+  }
+  
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .form-control {
+    height: 28px; 
+    width: 120px; 
+    font-size: 14px;
+  }
+
+  .btn{
+    border-radius:20px;
+  }
+
+  .navbar {
+    z-index: 1000;
+    background-color: #343a40; 
+}
+
+/* Set background color for collapsed content */
+.navbar-collapse {
+    background-color: #343a40; 
+}

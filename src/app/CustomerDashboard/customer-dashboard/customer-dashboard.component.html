@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard</title>
+</head>
+
+<body>
+    
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 80px;">
+            <a class="navbar-brand" routerLink="/customer-dashboard"
+                style="font-size: x-large;"><strong>HOTBYTE</strong></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item ">
+                        <!-- <i class="fa fa-user" style="font-size: 20px; color: white;"></i> -->
+                        <a class="nav-link" [routerLink]="'/orders/'+getCustomerIdFromLocalStorage()">My Orders </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <!-- <i class="fa fa-shopping-cart" style="font-size: 20px; color: white;"></i> -->
+                        <a class="nav-link" [routerLink]="'/cart/'+getCustomerIdFromLocalStorage()">Cart</a>
+                    </li>
+                   
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="logout()">Log out</a>
+                    </li>
+
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0" (submit)="searchByLocation()">
+                    <div class="input-group">
+                        <input id="searchInput" [(ngModel)]="searchLocation" name="searchLocation"
+                            class="form-control mr-sm-2" type="search" placeholder="Search restaurants by location"
+                            aria-label="Search" style="width: 300px;">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </nav>
+   
+    <!--cards for restaurants-->
+
+    <div class="container-fluid">
+        <div class="row" style="margin-top: 20px; margin-left: 20px; margin-bottom: 10px; margin-right: 10px; ">
+
+
+
+            <div class="col-md-4" *ngFor="let restaurant of filteredRestaurantList"
+                (click)="showMenuItems(restaurant.restaurantId)">
+                
+                    <div class="card"
+                        style="   margin-bottom: 25px; width: 400px; box-shadow:0 10px 10px 0 rgba(0, 0, 0, 0.7); border-radius: 15px;">
+
+                        <img class="card-img-top" [src]="getFirstMenuItemImage(restaurant.menuItemSet)"
+                            alt="Card image cap" style="height: 250px; width: 100%; border-radius: 15px 15px 0 0;">
+                        <div class="card-body" style="border-radius: 0 0 15px 15px;">
+                            <h2 class="card-title">{{ restaurant.name }}</h2>
+                            <p class="card-text">{{ restaurant.location }}</p>
+                            <p class="card-text">Contact: {{ restaurant.contactNumber }}</p>
+                            <p class="card-text">Rating: <i class="fa fa-star" aria-hidden="true"></i>{{ restaurant.rating }}</p>
+                        </div>
+                    </div>
+               
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

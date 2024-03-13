@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <form [formGroup]="registerCategoryForm" class="container col-md-5 border p-4 rounded"  (ngSubmit)="insertCategory()"  method="post" style="margin-top: 20px;">
+
+   
+    
+    <div class="form-group ">
+        <label for="categoryName">Category Name</label>
+        <input type="text" formControlName="categoryName" class="form-control" placeholder="Enter a valid category here" [ngClass]="{ 'is-invalid': submitted && f['categoryName'].errors }">
+        <div *ngIf="submitted && f['categoryName'].errors" class="invalid-feedback">Invalid category name</div>
+        <div *ngIf="f['categoryName'].errors?.['required']" style="color: red;font-size: small;">Category name is required</div>
+    </div>
+    <div class="form-group">
+        <label for="restaurantId">Restaurant</label>
+        <select formControlName="restaurantId" class="form-control" [ngClass]="{ 'is-invalid': submitted && f['restaurantId'].errors }">
+            <option *ngFor="let restaurant of restaurants" [value]="restaurant.restaurantId">{{ restaurant.name }}</option>
+        </select>
+        <div *ngIf="submitted && f['restaurantId'].errors" class="invalid-feedback">Invalid restaurant selection</div>
+        <div *ngIf="f['restaurantId'].errors?.['required']" style="color: red; font-size: small;">Restaurant selection is required</div>
+    </div>
+
+    
+  
+    <br>
+    <button type="submit" [disabled]="!registerCategoryForm.valid"  class="btn btn-primary">Add Category</button>
+  
+  
+  </form>
+</body>
+
+</html>

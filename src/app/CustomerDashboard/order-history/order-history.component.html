@@ -1,0 +1,76 @@
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 80px;">
+        <a class="navbar-brand" routerLink="/customer-dashboard"
+            style="font-size: x-large;"><strong>HOTBYTE</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                  
+                    <a class="nav-link" [routerLink]="'/orders/'+getCustomerIdFromLocalStorage()">My Orders </a>
+                </li>
+
+                <li class="nav-item">
+                   
+                    <a class="nav-link" [routerLink]="'/cart/'+getCustomerIdFromLocalStorage()">Cart</a>
+                </li>
+               
+                <li class="nav-item">
+                    <a class="nav-link" (click)="logout()">Log out</a>
+                </li>
+
+
+            </ul>
+            
+        </div>
+    </nav>
+
+
+
+<!-- Order History Container -->
+<div class="container mt-4">
+    <h1>Your order History</h1>
+    
+    <div *ngFor="let orderId of getSortedOrderIds()">
+        
+        <!-- Filter orders based on the current orderId -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Order {{ orderId }}</h5>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Menu Item</th>
+                                <th>Quantity</th>
+                                <th>Order Date</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Filter orders for the current orderId -->
+                            <tr *ngFor="let item of filterOrders(orderDetails, orderId)">
+                                <td>{{ item.orderId }}</td>
+                                <td>{{ item.menuName }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ item.orderDate | date: 'yyyy-MM-dd HH:mm:ss' }}</td>
+                               
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Display Total Cost for the current orderId -->
+                <p class="card-text"><strong>Total Cost:</strong> {{ getTotalCostForOrderId(orderId) | currency:'INR' }}</p>
+                <p class="card-text"><strong> Order Status: </strong>{{ getOrderStatusForOrderId(orderId) }}</p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+

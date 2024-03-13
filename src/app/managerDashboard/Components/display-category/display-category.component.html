@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-between align-items-center">
+    <h2><strong> Categories List</strong></h2>
+    <button type="button" class="btn btn-primary" [routerLink]="['/manager-dashboard/add-category']">Add</button>
+</div>
+
+<div>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Category Id</th>
+                <th>Category Name</th>                
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let category of pagedCategoryList">
+                <td>{{category.categoryId}}</td>
+                <td>{{ category.categoryName }}</td>                
+                <td>
+                    <button type="button"  class="btn btn-primary"  (click)="removeMenuCategory(category.categoryId)" ><i
+                            class="fa fa-trash"></i></button>
+                </td>
+                
+            </tr>
+        </tbody>
+    </table>
+    <!-- Pagination controls -->
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="pageSize" [length]="totalItems"
+        (page)="onPageChange($event)">
+    </mat-paginator>
+</div>
