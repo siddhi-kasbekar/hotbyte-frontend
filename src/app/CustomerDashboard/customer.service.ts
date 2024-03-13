@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Restaurant } from '../adminDashboard/Model/Restaurant';
 import { MenuItem } from '../managerDashboard/Model/MenuItem';
 import { Category } from '../managerDashboard/Model/Category';
+import { Password } from '../password';
 
 @Injectable({
   providedIn: 'root'
@@ -109,5 +110,16 @@ clearCart(customerid:number): Observable<any> {
   return this.http.delete<any>("http://localhost:8080/api/v1/cart/clearAll"+`/${customerid}`, { headers: this.getHeaders(),responseType: 'text' as 'json'});
 }
 
+newPassword(requestBody:Password): Observable<string>{
+  console.log(requestBody);
+  
+  return this.http.put<string>("http://localhost:8080/api/v1/customers/updatePassword", requestBody,{ responseType: 'text' as 'json'  });
+}
+
+getCustomerById(customerId: number): Observable<any>{
+  return this.http.get<any>("http://localhost:8080/api/v1/customers/getById"+`/${customerId}`, { headers: this.getHeaders() ,responseType: 'text' as 'json'});
+
+
+}
 
 }

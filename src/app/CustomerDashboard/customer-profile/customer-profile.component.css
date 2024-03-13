@@ -1,16 +1,29 @@
+.custom-table-container {
+    width: 90%; 
+    margin: auto; 
+  }
+
+  .navbar {
+    z-index: 1000;
+    background-color: #343a40;
+}
+
+/* Set background color for collapsed content */
+.navbar-collapse {
+    background-color: #343a40; 
+}
 
 
-p{
-  cursor: pointer;
-  color: #fff;
-  
-}
-p:hover{
-  color: rgb(23, 147, 188);
-}
+
+
+
+
+
+
+
 
 .topnav {
-    overflow: hidden;
+    overflow:hidden;
     background-color:#000F1A;
     z-index: 1;
     position:fixed;
@@ -87,8 +100,11 @@ p:hover{
 	bottom: 0;
 	left: 0;
 	right: 0;
-	width: 500px;
-	height: 450px;
+	width: 600px;
+	height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
 }
 
 .form-box .header-text {
@@ -113,7 +129,7 @@ p:hover{
 	margin-left: 5px;
 	margin-right: 10px;
 	top: 5px;
-	display: inline-block;
+	/* display: inline-block; */
 	width: 20px;
 	height: 20px;
 	cursor: pointer;
@@ -181,9 +197,39 @@ img {
     max-width: 100%;
 }
 
+.address-row {
+    display: flex;
+}
+
+.address-row div {
+    margin-right: 20px; 
+}
+
+.address-row div:last-child {
+    margin-right: 0;
+}
+
+.input-row {
+    display: flex;
+}
+
+.input-row div {
+    margin-right: 20px; 
+}
+
+.input-row div:last-child {
+    margin-right: 0;
+}
+
 
 /* Make footer responsive */
 footer { padding: 20px; text-align: center; }
 .contact-info { display: flex; justify-content: center; margin-top: 20px; }
 .contact-info a { color: #fff; margin: 0 10px; text-decoration: none; }
 .contact-info a:hover { text-decoration: underline; }
+
+
+
+
+
+

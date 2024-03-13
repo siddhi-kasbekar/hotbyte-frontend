@@ -29,6 +29,8 @@ import { DisplayCategoryComponent } from './managerDashboard/Components/display-
 import { AddCategoryComponent } from './managerDashboard/Components/add-category/add-category.component';
 import { PaymentSuccessComponent } from './CustomerDashboard/payment-success/payment-success.component';
 import { CartComponent } from './CustomerDashboard/cart/cart.component';
+import { CustomerForgotPasswordComponent } from './customer-forgot-password/customer-forgot-password.component';
+import { CustomerProfileComponent } from './CustomerDashboard/customer-profile/customer-profile.component';
 
 
 const routes: Routes = [
@@ -75,7 +77,9 @@ const routes: Routes = [
   { path: 'cart/:customerId', component: CartComponent },
   { path: 'checkout', component: CheckoutComponent },
   { path: 'orders/:customerId', component: OrderHistoryComponent },
-  { path: 'payment-success', component: PaymentSuccessComponent }
+  { path: 'payment-success', component: PaymentSuccessComponent },
+  {path:'forgot-password',component:CustomerForgotPasswordComponent},
+  {path:'customer-profile/:customerId', component:CustomerProfileComponent}
 ];
 
 @NgModule({

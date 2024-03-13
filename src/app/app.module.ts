@@ -38,6 +38,8 @@ import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/fo
 import { PaymentSuccessComponent } from './CustomerDashboard/payment-success/payment-success.component';
 import { CheckoutComponent } from './CustomerDashboard/checkout/checkout.component';
 import { CartComponent } from './CustomerDashboard/cart/cart.component';
+import { CustomerForgotPasswordComponent } from './customer-forgot-password/customer-forgot-password.component';
+import { CustomerProfileComponent } from './CustomerDashboard/customer-profile/customer-profile.component';
 
 
 @NgModule({
@@ -71,7 +73,9 @@ import { CartComponent } from './CustomerDashboard/cart/cart.component';
     OrderHistoryComponent,
     AddCategoryComponent,
     DisplayCategoryComponent,
-    PaymentSuccessComponent
+    PaymentSuccessComponent,
+    CustomerForgotPasswordComponent,
+    CustomerProfileComponent
   ],
   imports: [
     BrowserModule,

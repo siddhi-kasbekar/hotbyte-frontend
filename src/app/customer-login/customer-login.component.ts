@@ -76,4 +76,8 @@ constructor(private jwtService: JwtClientService,private router: Router ) { }
       console.error('Error accessing API');
     }
   }
+
+  passwordUpdation(){
+    this.router.navigate(['/forgot-password']);
+   }
 }
