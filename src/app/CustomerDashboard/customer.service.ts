@@ -117,7 +117,7 @@ newPassword(requestBody:Password): Observable<string>{
 }
 
 getCustomerById(customerId: number): Observable<any>{
-  return this.http.get<any>("http://localhost:8080/api/v1/customers/getById"+`/${customerId}`, { headers: this.getHeaders() ,responseType: 'text' as 'json'});
+  return this.http.get<any>("http://localhost:8080/api/v1/customers/getById"+`/${customerId}`, { headers: this.getHeaders() });
 
 
 }

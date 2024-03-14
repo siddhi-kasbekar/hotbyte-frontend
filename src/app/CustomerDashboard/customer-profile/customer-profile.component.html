@@ -33,47 +33,52 @@
     </div>
 </nav>
 
-
-
-<div *ngIf="customerData">
-    <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
-      <label for="custName">Customer Name</label>
-      <input class="form-control" type="text" id="custName" name="custName" formControlName="custName" value="{{customerData.custName}}" required>
+<div style="display: flex; justify-content: center; align-items: center; padding-bottom: 4%;" *ngIf="customerData$ | async as customer">
     
-      <label for="gender">Gender</label>
-      <input type="text" id="gender" formControlName="gender" required>
-    
-      <label for="email">Email</label>
-      <input type="email" id="email" formControlName="email" required>
-    
-      <label for="phone">Phone</label>
-      <input type="tel" id="phone" formControlName="phone" required>
-    
-      <label for="username">Username</label>
-      <input type="text" id="username" formControlName="username" required>
-    
-      <label for="password">Password</label>
-      <input type="password" id="password" formControlName="password" required>
-    
-      <!-- Nested form group for 'address' -->
-    <div formGroupName="addressDTO">
-        <label for="houseNo">House No</label>
-        <input type="text" id="houseNo" formControlName="houseNo" required>
-  
-        <label for="area">Area</label>
-        <input type="text" id="area" formControlName="area" required>
-  
-        <label for="landmark">Landmark</label>
-        <input type="text" id="landmark" formControlName="landmark" required>
-  
-        <label for="city">City</label>
-        <input type="text" id="city" formControlName="city" required>
-  
-        <label for="pincode">Pincode</label>
-        <input type="number" id="pincode" formControlName="pincode" required>
-      </div>
-    
-      <button type="submit" >Update</button>
-    </form>
+    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" style="width: 60%;">
+        <div class="form-group">
+          <label for="custName">Customer Name</label>
+          <input type="text" [readonly]="editable" class="form-control" id="custName" formControlName="custName" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" [readonly]="editable" class="form-control" id="email" formControlName="email" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="tel" [readonly]="editable" class="form-control" id="phone" formControlName="phone" required>
+        </div>
+        <div class="form-group">
+          <label for="gender">Gender:</label>
+          <input type="text" [readonly]="editable" class="form-control" id="gender" formControlName="gender">
+        </div>
+        <div formGroupName="address">
+          <div class="form-group">
+            <label for="houseNo">House No:</label>
+            <input type="text" [readonly]="editable" class="form-control" id="houseNo" formControlName="houseNo">
+          </div>
+          <div class="form-group">
+            <label for="area">Area:</label>
+            <input type="text" [readonly]="editable" class="form-control" id="area" formControlName="area">
+          </div>
+          <div class="form-group">
+            <label for="landmark">Landmark:</label>
+            <input type="text" [readonly]="editable" class="form-control" id="landmark" formControlName="landmark">
+          </div>
+          <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" [readonly]="editable" class="form-control" id="city" formControlName="city">
+          </div>
+          <div class="form-group">
+            <label for="pincode">Pincode:</label>
+            <input type="text" [readonly]="editable" class="form-control" id="pincode" formControlName="pincode">
+          </div>
+        </div>
+        <button type="button" class="btn btn-primary" (click)="toggleEditable()">
+          {{ editable ? 'Edit Profile' : 'Cancel' }}
+        </button>
+        <button type="submit" [disabled]="updateForm.invalid || editable" class="btn btn-primary" *ngIf="!editable">Update Profile</button>
+      </form>
+      
   </div>
   
