@@ -16,40 +16,40 @@ export class CustomerProfileComponent {
   customerForm: FormGroup; // Declare FormGroup
   customerData: CustomerProfile | undefined;
 
-  // customer: CustomerProfile = {
-  //   custId: 0,
-  //   custName: '',
-  //   gender: '',
-  //   email: '',
-  //   phone: '',
-  //   username: '',
-  //   password: '',
-  //   address: {
-  //     houseNo: '',
-  //     area: '',
-  //     landmark: '',
-  //     city: '',
-  //     pincode: 0
-  //   }
-  // };
+  customer: Customer = {
+    custId: 0,
+    custName: '',
+    gender: '',
+    email: '',
+    phone: '',
+    username: '',
+    password: '',
+    addressDTO: {
+      houseNo: '',
+      area: '',
+      landmark: '',
+      city: '',
+      pincode: 0
+    }
+  };
   
   constructor( private formBuilder: FormBuilder ,private route: ActivatedRoute, private customerService: CustomerService, private jwtClientService: JwtClientService
     , private router: Router) {
 
       // Initialize form in constructor
-    this.customerForm = this.formBuilder.group({
-      custName: [''],
-      gender: [''],
-      email: [''],
-      phone: [''],
-      username: [''],
-      password: [''],
-      address: this.formBuilder.group({
-        houseNo: [''],
-        area: [''],
-        landmark: [''],
-        city: [''],
-        pincode: ['']
+      this.customerForm = this.formBuilder.group({
+        custName: [''],
+        gender: [''],
+        email: [''],
+        phone: [''],
+        username: [''],
+        password: [''],
+        addressDTO: this.formBuilder.group({
+          houseNo: [''],
+          area: [''],
+          landmark: [''],
+          city: [''],
+          pincode: ['']
       })
     });
      }
@@ -64,43 +64,71 @@ export class CustomerProfileComponent {
 
     getCustomerDetails(): void {
       const customerId = this.getCustomerIdFromLocalStorage();
-      this.customerService.getCustomerById(customerId)
-        .subscribe(
-          (data: CustomerProfile) => {
-            console.log("Received customer data:", data);
-
-            this.customerData = data;
-            console.log(data);
-            
-            this.prefillFormWithData(); // Prefill form with customer data
-          },
-          error => {
-            console.log(error);
-          }
-        );
+    this.customerService.getCustomerById(customerId)
+      .subscribe(
+        (data: CustomerProfile) => {
+          this.customerData = data;
+          this.prefillFormWithData();
+        },
+        error => {
+          console.error(error);
+        }
+      );
     }
 
+    
+
     prefillFormWithData(): void {
+      console.log("Prefilling form with data:", this.customerData);
       if (this.customerData) {
-        this.customerForm.patchValue(this.customerData); // Prefill form with customer data
-        this.customerForm.markAllAsTouched(); // Mark all form controls as touched
+        this.customerForm.patchValue({
+          custName: this.customerData.custName,
+          gender: this.customerData.gender,
+          email: this.customerData.email, // Assuming email is editable
+          phone: this.customerData.phone,
+          username: this.customerData.username,
+          password: this.customerData.password, // Consider security implications of pre-filling password
+          addressDTO: {
+            houseNo: this.customerData.address?.houseNo || '', // Handle potential undefined address
+            area: this.customerData.address?.area || '',
+            landmark: this.customerData.address?.landmark || '',
+            city: this.customerData.address?.city || '',
+            pincode: this.customerData.address?.pincode || 0
+          }
+        });
       }
     }
    
 
     onSubmit(): void {
-      // this.customerService.updateCustomer(this.customer)
-      //   .subscribe(
-      //     () => {
-      //       console.log('Customer updated successfully');
-      //       this.router.navigate(['/success-page']);
-      //     },
-      //     error => {
-      //       console.log(error);
-      //     }
-      //   );
+      // Create a new Customer object and populate its properties from the form
+      const updatedCustomer: Customer = {
+        custId: this.getCustomerIdFromLocalStorage(),
+        custName: this.customerForm.get('custName')?.value || '', // Get value from the form control
+        gender: this.customerForm.get('gender')?.value || '', // Get value from the form control
+        email: this.customerForm.get('email')?.value || '', // Get value from the form control
+        phone: this.customerForm.get('phone')?.value || '', // Get value from the form control
+        username: this.customerForm.get('username')?.value || '', // Get value from the form control
+        password: this.customerForm.get('password')?.value || '', // Get value from the form control
+        addressDTO: {
+          houseNo: this.customerForm.get('addressDTO.houseNo')?.value || '', // Get value from the form control
+          area: this.customerForm.get('addressDTO.area')?.value || '', // Get value from the form control
+          landmark: this.customerForm.get('addressDTO.landmark')?.value || '', // Get value from the form control
+          city: this.customerForm.get('addressDTO.city')?.value || '', // Get value from the form control
+          pincode: this.customerForm.get('addressDTO.pincode')?.value || 0 // Get value from the form control
+        }
+      };
+    
+      // Call the service method to update the customer details
+      this.customerService.updateCustomerById(updatedCustomer.custId, updatedCustomer).subscribe(
+        (response) => {
+          console.log('Customer updated successfully:', response);
+        },
+        (error) => {
+          console.error('Error updating customer:', error);
+        }
+      );
     }
-
 
 
 

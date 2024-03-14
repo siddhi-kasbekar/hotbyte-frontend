@@ -122,4 +122,8 @@ getCustomerById(customerId: number): Observable<any>{
 
 }
 
+updateCustomerById(customerId:number,requestBody:any):Observable<any> {
+  return this.http.put<any>("http://localhost:8080/api/v1/customers/update-info"+`/${customerId}`,requestBody, { headers: this.getHeaders() ,responseType: 'text' as 'json'})
+}
+
 }

@@ -5,68 +5,203 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+       .navbar-nav .nav-link {
+    transition: color 0.3s ease;
+}
 
+.navbar-nav .nav-link:hover {
+    background-color: #5a5955; /* Change to your desired hover color */
+    
+}
+       
+        .topnav a.login {
+            float: right;
+        }
+
+        .topnav a.about {
+            float: right;
+        }
+
+       /* Make image responsive */
+       img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            position: relative;
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+
+        .content h1,
+        .content p,
+        .content h2,
+        .content button {
+            margin-bottom: 20px;
+        }
+
+        /* Make footer responsive */
+        footer {
+            background-color: #001A22;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .contact-info a {
+            color: #fff;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .form-box {
+            margin: auto auto;
+            padding: 40px;
+            border-radius: 5px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: auto;
+            width: 500px;
+            height: 430px;
+        }
+
+        .form-box h1 {
+            color: white;
+        }
+
+        .form-box button:hover {
+            background-color: rgb(23, 147, 188);
+            opacity: 0.8;
+        }
+
+        .form-box button {
+            border: none;
+            border-radius: 15px;
+            background-color: rgb(23, 147, 188);
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s, opacity 0.3s;
+        }
+
+        /* Adjust content size based on image size */
+        @media (max-width: 767px) {
+            .content {
+                width: calc(100% - 40px); /* 20px padding on each side */
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .content {
+                width: 80%; /* Adjust width as needed */
+            }
+        }
+
+        @media (min-width: 992px) {
+            .content {
+                width: 60%; /* Adjust width as needed */
+            
+        }
+        }
+    </style>
 </head>
 
 <body>
-    <div class="topnav" id="myTopnav">
-        <a style="margin-left: 4; font-size:x-large;"><strong>HOTBYTE</strong></a>
-        <a class="login" [routerLink]="'/customer-login'"><strong>Customer Login</strong></a>
-        <a class="login" [routerLink]="'/admin-login'"><strong>Admin/Manager Login</strong></a>
-        <a href="#footer" class="about"><strong>About</strong></a>
-
-        <a href="javascript:void(0);" class="icon" onclick="myFunction()">
-            <i class="fa fa-bars"></i>
-        </a>
-    </div>
-
-    <img src="../../assets/landing.jpg" alt="landing image">
-
-
-    <div class="form-box">
-
-        <div>
-            <h1>Welcome to HOTBYTE</h1>
-            <h3 style="color: white; text-align: justify;">Indulge in Culinary Delights from Around the World At
-                Hotbyte, we're passionate about bringing you the finest flavors from across the globe,
-                right to your doorstep. From sizzling street food to elegant gourmet dishes, our menu is a journey
-                through culinary excellence.</h3>
-            <h2 style="color: white;">Order Now and Elevate Your Dining Experience </h2>
-            <button style="border-radius: 20px; " [routerLink]="'/customer-register'">Place order</button>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><strong>HOTBYTE</strong></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'/customer-login'">Customer Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" [routerLink]="'/admin-login'">Admin/Manager Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#footer">About</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
 
+    <img src="../../assets/landing.jpg" alt="landing image" class="img-fluid">
+
+   
+    <div class="container-fluid content" >
+        <div class="row justify-content-left">
+            <div class="col-lg-8 col-md-10 col-sm-12 text-left">
+                <h1>Welcome to HOTBYTE</h1>
+                <p>Indulge in Culinary Delights from Around the World At Hotbyte, we're passionate
+                    about bringing you the finest flavors from across the globe, right to your doorstep. From sizzling
+                    street food to elegant gourmet dishes, our menu is a journey through culinary excellence.</p>
+                <h2 class="text-white">Order Now and Elevate Your Dining Experience</h2>
+                <button class="btn btn-primary btn-lg" [routerLink]="'/customer-register'">Place Order</button>
+            </div>
         </div>
     </div>
 
 
-
-
-
-
-
-
-
-
-    <footer id="footer">
-        <p>
-            <p>About Us:</p>
-            <p>Discover a delightful array of dishes crafted with the finest ingredients. 
-                Experience the convenience of our food ordering app, bringing the flavors of authenticity to your doorstep. 
-                Whether you're dining solo or sharing with friends and family, our app ensures a seamless and enjoyable culinary journey.</p>
-            
-        
-        <div class="contact-info">
-            <a href="mailto:info@example.com">
-                <i class="fa fa-envelope"></i>
-                Email Us
-            </a>
-            <a href="tel:+1234567890">
-                <i class="fa fa-phone"></i>
-                Call Us
-            </a>
+    <footer id="footer" class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>About Us:</h5>
+                    <p>Discover a delightful array of dishes crafted with the finest ingredients. Experience the
+                        convenience of our food ordering app, bringing the flavors of authenticity to your doorstep.
+                        Whether you're dining solo or sharing with friends and family, our app ensures a seamless and
+                        enjoyable culinary journey.</p>
+                </div>
+                <div class="col-md-6">
+                    <h5>Contact Info:</h5>
+                    <div class="contact-info">
+                        <a href="mailto:info@example.com" class="text-white">
+                            <i class="fa fa-envelope"></i> Email Us
+                        </a>
+                        <a href="tel:+1234567890" class="text-white ml-3">
+                            <i class="fa fa-phone"></i> Call Us
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        &copy; 2024 Hotbyte. All rights reserved.
+        <div class="text-center mt-3">
+            &copy; 2024 Hotbyte. All rights reserved.
+        </div>
     </footer>
+
+    <!-- Bootstrap JS and jQuery (optional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
         function myFunction() {
             var x = document.getElementById("myTopnav");

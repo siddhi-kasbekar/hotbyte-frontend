@@ -38,7 +38,7 @@
 <div *ngIf="customerData">
     <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
       <label for="custName">Customer Name</label>
-      <input class="form-control" type="text" id="custName" name="custName" formControlName="custName" value="{{customerData?.custName}}" required>
+      <input class="form-control" type="text" id="custName" name="custName" formControlName="custName" value="{{customerData.custName}}" required>
     
       <label for="gender">Gender</label>
       <input type="text" id="gender" formControlName="gender" required>
@@ -56,7 +56,7 @@
       <input type="password" id="password" formControlName="password" required>
     
       <!-- Nested form group for 'address' -->
-    <div formGroupName="address">
+    <div formGroupName="addressDTO">
         <label for="houseNo">House No</label>
         <input type="text" id="houseNo" formControlName="houseNo" required>
   
@@ -73,7 +73,7 @@
         <input type="number" id="pincode" formControlName="pincode" required>
       </div>
     
-      <button type="submit" [disabled]="!customerForm.valid">Update</button>
+      <button type="submit" >Update</button>
     </form>
   </div>
   
