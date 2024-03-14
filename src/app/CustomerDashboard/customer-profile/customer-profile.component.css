@@ -11,6 +11,7 @@
 /* Set background color for collapsed content */
 .navbar-collapse {
     background-color: #343a40; 
+    width: 100%;
 }
 
 
@@ -69,6 +70,7 @@
       float: none;
       display: block;
       text-align: left;
+      
     }
   }
 
