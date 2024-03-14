@@ -101,7 +101,23 @@
   padding-right: 8px;
   border-radius: 25px;
 }
+.bottom-left-image {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin-bottom: 190px; /* Adjust as needed */
+  margin-left: 20px; /* Adjust as needed */
+  z-index: 999; /* Ensure it's above other content */
+}
 
+.bottom-right-image {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 20px; /* Adjust as needed */
+  margin-right: 20px; /* Adjust as needed */
+  z-index: 999; /* Ensure it's above other content */
+}
 
 
 
