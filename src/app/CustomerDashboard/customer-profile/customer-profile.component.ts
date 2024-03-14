@@ -18,6 +18,7 @@ export class CustomerProfileComponent {
   updateForm!: FormGroup;
   customerData$!: Observable<any>;
 
+  
   // customer: Customer = {
   //   custId: 0,
   //   custName: '',
@@ -45,16 +46,15 @@ export class CustomerProfileComponent {
   ngOnInit(): void {
     this.updateForm = this.formBuilder.group({
       custName: ['', Validators.required],
-      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       gender: [''],
       address: this.formBuilder.group({
         houseNo: [''],
         area: [''],
         landmark: [''],
         city: [''],
-        pincode: ['']
+        pincode: ['', [Validators.pattern('^[1-9][0-9]{5}$')]]
       })
     });
 
@@ -62,6 +62,9 @@ export class CustomerProfileComponent {
 
   }
 
+  get updateFormControls() {
+    return this.updateForm.controls;
+  }
 
   getCustomerDetails(): void {
     const customerId = this.getCustomerIdFromLocalStorage();

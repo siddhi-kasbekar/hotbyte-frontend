@@ -14,14 +14,6 @@
 }
 
 
-
-
-
-
-
-
-
-
 .topnav {
     overflow:hidden;
     background-color:#000F1A;
@@ -87,9 +79,28 @@
   .topnav .about{
     float: right;
   }
+  .form-container {
+    background-color: #acc4d4 ; /* Background color for the container */
+    border-radius: 2px; /* Rounded corners for the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Box shadow for the container */
+    padding: 10px; /* Padding for the container */
+    margin: 10px auto; /* Margin to center the container */
+    max-width: 800px; /* Maximum width for the container */
+    padding-top: 30px;
+}
 
 
   
+/* CSS for buttons */
+.btn-primary {
+  margin-top: 10px; /* Adjust top margin as needed */
+  margin-bottom: 10px; /* Adjust bottom margin as needed */
+  margin-left: 10px;
+  margin-right: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
+  border-radius: 25px;
+}
 
 
 
