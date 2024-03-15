@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JwtClientService } from 'hotbyte/src/app/jwt-client.service';
-import { ManagerService } from 'hotbyte/src/app/managerDashboard/manager.service';
+
 import { Observable } from 'rxjs/internal/Observable';
+import { ManagerService } from '../../manager.service';
+import { JwtClientService } from 'src/app/Security/jwt-client.service';
 
 
 
@@ -122,23 +123,25 @@ export class ManagerProfileComponent {
       
     };
 
-    // const adminId = this.getAdminIdFromLocalStorage();
-    // this.managerService.updateManagerById(adminId, requestBody)
-    // .subscribe(response => {
-    //   console.log(response);
+    const adminId = this.getAdminIdFromLocalStorage();
+    this.managerService.updateManagerById(adminId, requestBody)
+    .subscribe(response => {
+      console.log(response);
 
-    //   alert('Profile updated successfully');
-    //   this.getManagerDetails(); 
-    // }, error => {
-    //   alert('Failed to update profile');
-    // });
+      alert('Profile updated successfully');
+      this.getManagerDetails(); 
+    }, error => {
+      alert('Failed to update profile');
+    });
 
     
   
   }
 
   getAdminIdFromLocalStorage(): number {
-    const adminId = localStorage.getItem('customerId');
+    const adminId = localStorage.getItem('adminId');
+    console.log(adminId);
+    
 
     return adminId ? parseInt(adminId, 10) : 0;
   }

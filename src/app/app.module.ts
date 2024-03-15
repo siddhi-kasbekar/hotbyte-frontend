@@ -65,7 +65,7 @@ import { ManagerProfileComponent } from './managerDashboard/Components/manager-p
     CustomerDashboardComponent,
     CartComponent,
     CheckoutComponent,
-    
+    ManagerProfileComponent,
    
     UpdateMenuItemsComponent,
     
@@ -77,7 +77,6 @@ import { ManagerProfileComponent } from './managerDashboard/Components/manager-p
     PaymentSuccessComponent,
     CustomerForgotPasswordComponent,
     CustomerProfileComponent,
-    ManagerProfileComponent
   ],
   imports: [
     BrowserModule,
