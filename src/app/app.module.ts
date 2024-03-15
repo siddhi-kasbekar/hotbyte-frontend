@@ -40,6 +40,7 @@ import { CheckoutComponent } from './CustomerDashboard/checkout/checkout.compone
 import { CartComponent } from './CustomerDashboard/cart/cart.component';
 import { CustomerForgotPasswordComponent } from './customer-forgot-password/customer-forgot-password.component';
 import { CustomerProfileComponent } from './CustomerDashboard/customer-profile/customer-profile.component';
+import { ManagerProfileComponent } from './managerDashboard/Components/manager-profile/manager-profile.component';
 
 
 @NgModule({
@@ -75,7 +76,8 @@ import { CustomerProfileComponent } from './CustomerDashboard/customer-profile/c
     DisplayCategoryComponent,
     PaymentSuccessComponent,
     CustomerForgotPasswordComponent,
-    CustomerProfileComponent
+    CustomerProfileComponent,
+    ManagerProfileComponent
   ],
   imports: [
     BrowserModule,

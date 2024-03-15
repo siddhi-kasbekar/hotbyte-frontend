@@ -88,4 +88,15 @@ export class ManagerService {
   deleteMenuCategory(categoryid: number): Observable<string> {
     return this.http.delete<string>("http://localhost:8080/api/v1/menuCategory/delete-category" + `/${categoryid}`,{ headers: this.getHeaders(), responseType: 'text' as 'json' });
   }
+
+  
+getManagerById(adminId: number): Observable<any> {
+  return this.http.get<any>("http://localhost:8080/api/v1/admin/getById" + `/${adminId}`, { headers: this.getHeaders() });
 }
+  
+  updateManagerById(adminId:number,requestBody:any):Observable<any>  {
+    return this.http.put<any>("http://localhost:8080/api/v1/admin/update-info"+`/${adminId}`,requestBody, { headers: this.getHeaders() ,responseType: 'text' as 'json'})
+  }
+  
+}
+

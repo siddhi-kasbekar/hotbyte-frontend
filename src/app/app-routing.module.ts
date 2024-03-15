@@ -31,6 +31,7 @@ import { PaymentSuccessComponent } from './CustomerDashboard/payment-success/pay
 import { CartComponent } from './CustomerDashboard/cart/cart.component';
 import { CustomerForgotPasswordComponent } from './customer-forgot-password/customer-forgot-password.component';
 import { CustomerProfileComponent } from './CustomerDashboard/customer-profile/customer-profile.component';
+import { ManagerProfileComponent } from './managerDashboard/Components/manager-profile/manager-profile.component';
 
 
 const routes: Routes = [
@@ -60,7 +61,8 @@ const routes: Routes = [
       { path: 'display-orders', component: DisplayOrdersComponent },
 
       { path: 'display-category', component: DisplayCategoryComponent },
-      { path: 'add-category', component: AddCategoryComponent }
+      { path: 'add-category', component: AddCategoryComponent },
+      {path: 'manager-profile',component:ManagerProfileComponent}
 
     ],
   },
