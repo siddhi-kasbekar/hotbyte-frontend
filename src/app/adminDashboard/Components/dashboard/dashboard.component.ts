@@ -10,7 +10,14 @@ import { JwtClientAdminService } from 'src/app/Security/jwt-client-admin.service
 })
 export class DashboardComponent {
 
+  isMenuOpen: boolean = false;
+
   constructor(private router: Router,private jwtAdminService:JwtClientAdminService) {}
+
+
+  toggleMenu(): void {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
 
   logout(): void {
 

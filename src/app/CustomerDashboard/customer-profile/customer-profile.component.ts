@@ -4,7 +4,7 @@ import { JwtClientService } from 'src/app/Security/jwt-client.service';
 import { CustomerService } from '../customer.service';
 import { Customer } from 'src/app/adminDashboard/Model/Customer';
 import { CustomerProfile } from '../CustomerProfile';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
@@ -49,6 +49,7 @@ export class CustomerProfileComponent {
       email: ['', [Validators.required, Validators.email]],
       phone: ['', [Validators.required, Validators.pattern('^((\\+91-?)|0)?[0-9]{10}$')]],
       gender: [''],
+      password: [''],
       address: this.formBuilder.group({
         houseNo: [''],
         area: [''],
@@ -69,14 +70,12 @@ export class CustomerProfileComponent {
   getCustomerDetails(): void {
     const customerId = this.getCustomerIdFromLocalStorage();
 
-    // Subscribe to the customer data observable
     this.customerData$ = this.customerService.getCustomerById(customerId);
 
-    // Fetch customer data from the observable
     this.customerData$.subscribe(customer => {
       console.log('Customer Data:', customer);
 
-      // Check if customer data is available
+      // if customer data is available
       if (customer) {
         // Update customer fields
         this.updateCustomerFields(customer);
@@ -113,6 +112,16 @@ export class CustomerProfileComponent {
     });
   }
 
+  // passwordMatchValidator(control: AbstractControl): { [key: string]: boolean } | null {
+  //   const password = control.get('password')?.value;
+  //   const confirm_password = control.get('confirm_password')?.value;
+  
+  //   if (password !== confirm_password) {
+  //     return { passwordMismatch: true }; 
+  //   } else {
+  //     return null; // Passwords match
+  //   }
+  // }
 
 
 
@@ -133,7 +142,7 @@ export class CustomerProfileComponent {
 
     // Construct the request body with the required structure
     const requestBody = {
-      custName: formData.custName, // Assuming username is equivalent to custName
+      custName: formData.custName, 
       gender: formData.gender,
       email: formData.email,
       phone: formData.phone,
@@ -154,10 +163,12 @@ export class CustomerProfileComponent {
         console.log(response);
 
         alert('Profile updated successfully');
-        this.getCustomerDetails(); // Reload customer data after updating
+        this.getCustomerDetails(); 
       }, error => {
         alert('Failed to update profile');
       });
+
+     
   }
 
 
@@ -167,7 +178,6 @@ export class CustomerProfileComponent {
 
 
   getCustomerIdFromLocalStorage(): number {
-    // Retrieve customer ID from localStorage
     const customerId = localStorage.getItem('customerId');
 
     return customerId ? parseInt(customerId, 10) : 0;

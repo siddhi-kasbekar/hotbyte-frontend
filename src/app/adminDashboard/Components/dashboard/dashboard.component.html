@@ -8,8 +8,11 @@
 
 <body>
   <div class="menu-wrapper">
+    <button class="toggle-button" (click)="toggleMenu()"><i class="fa fa-bars"></i></button>
+
     <div class="sidebar-header">
-      <div class="sideBar">
+
+      <div class="sideBar" [ngClass]="{'showMenu': isMenuOpen}">
 
         
         <ul>

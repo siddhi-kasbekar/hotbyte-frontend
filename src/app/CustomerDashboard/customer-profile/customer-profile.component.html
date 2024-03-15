@@ -1,6 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 80px;">
-    <a class="navbar-brand" routerLink="/customer-dashboard"
-        style="font-size: x-large;"><strong>HOTBYTE</strong></a>
+    <a class="navbar-brand" routerLink="/customer-dashboard" style="font-size: x-large;"><strong>HOTBYTE</strong></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,107 +21,131 @@
                 <!-- <i class="fa fa-shopping-cart" style="font-size: 20px; color: white;"></i> -->
                 <a class="nav-link" [routerLink]="'/customer-profile/'+getCustomerIdFromLocalStorage()">Profile</a>
             </li>
-            
+
             <li class="nav-item">
                 <a class="nav-link" (click)="logout()">Log out</a>
             </li>
 
 
         </ul>
-        
+
     </div>
 </nav>
 <br><br>
-<div class="form-container"> 
-  <div style="display: flex; justify-content: center; align-items: center; padding-bottom: 4%; padding-top: 4%;padding-left: 4%; padding-right: 4%;" *ngIf="customerData$ | async as customer">
-    
-    <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" style="width: 100%;">
-      <div class="form-row">
-          <div class="form-group col-md-12">
-              <label for="custName">Customer Name</label>
-              <input type="text" [readonly]="editable" class="form-control" id="custName" formControlName="custName" required>
-              <div *ngIf="updateForm.controls['custName'].errors && (updateForm.controls['custName'].dirty || updateForm.controls['custName'].touched)">
-                  <div *ngIf="updateForm.controls['custName'].errors['required']" style="color: red;">
-                      Customer Name is required.
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group col-md-12">
-            <label for="email">Email</label>
-            <input type="email" [readonly]="editable" class="form-control" id="email" formControlName="email" required>
-            <div *ngIf="updateForm.controls['email'].errors && (updateForm.controls['email'].dirty || updateForm.controls['email'].touched)">
-                <div *ngIf="updateForm.controls['email'].errors['required']">
-                    Email is required.
-                </div>
-                <div *ngIf="updateForm.controls['email'].errors['email']"  style="color: red;">
-                    Invalid email format.
-                </div>
-            </div>
-        </div>
-      </div>
-      <div class="form-row">
-          <div class="form-group col-md-6">
-              <label for="phone">Phone</label>
-              <input type="tel" [readonly]="editable" class="form-control" id="phone" formControlName="phone" required>
-              <div *ngIf="updateForm.controls['phone'].errors && (updateForm.controls['phone'].dirty || updateForm.controls['phone'].touched)">
-                  <div *ngIf="updateForm.controls['phone'].errors['required']">
-                      Phone is required.
-                  </div>
-                  <div *ngIf="updateForm.controls['phone'].errors['pattern']"  style="color: red;">
-                      Phone must be a valid Indian phone number.
-                  </div>
-              </div>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="gender">Gender</label>
-            <input type="text" [readonly]="editable" class="form-control" id="gender" formControlName="gender">
-        </div>
-      </div>
-      <div formGroupName="address">
-          <div class="form-row">
-              <div class="form-group col-md-4">
-                  <label for="houseNo">House No</label>
-                  <input type="text" [readonly]="editable" class="form-control" id="houseNo" formControlName="houseNo">
-              </div>
-              <div class="form-group col-md-4">
-                  <label for="area">Area</label>
-                  <input type="text" [readonly]="editable" class="form-control" id="area" formControlName="area">
-              </div>
-              <div class="form-group col-md-4">
-                <label for="city">City</label>
-                <input type="text" [readonly]="editable" class="form-control" id="city" formControlName="city">
-              </div>
-          </div>
-          <div class="form-row">
-              <div class="form-group col-md-6">
-                  <label for="landmark">Landmark</label>
-                  <input type="text" [readonly]="editable" class="form-control" id="landmark" formControlName="landmark">
-              </div> 
-              <div class="form-group col-md-6">
-                <label for="pincode">Pincode</label>
-                <input type="text" [readonly]="editable" class="form-control" id="pincode" formControlName="pincode">
-                <div *ngIf="updateForm.controls['address'].get('pincode')?.errors && (updateForm.controls['address'].get('pincode')?.dirty || updateFormControls['address'].get('pincode')?.touched)">
-                    <div *ngIf="updateForm.controls['address'].get('pincode')?.errors?.['pattern']"  style="color: red;">
-                        Pincode must be a valid Indian pincode.
+<div class="form-container">
+    <div style="display: flex; justify-content: center; align-items: center; padding-bottom: 4%; padding-top: 4%;padding-left: 4%; padding-right: 4%;"
+        *ngIf="customerData$ | async as customer">
+
+        <form [formGroup]="updateForm" (ngSubmit)="onSubmit()" style="width: 100%;">
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="custName">Customer Name</label>
+                    <input type="text" [readonly]="editable" class="form-control" id="custName"
+                        formControlName="custName" required>
+                    <div
+                        *ngIf="updateForm.controls['custName'].errors && (updateForm.controls['custName'].dirty || updateForm.controls['custName'].touched)">
+                        <div *ngIf="updateForm.controls['custName'].errors['required']" style="color: red;">
+                            Customer Name is required.
+                        </div>
                     </div>
                 </div>
-            </div> 
-          </div>
-          
-      </div>
-      <button type="button" class="btn btn-primary" (click)="toggleEditable()">
-          {{ editable ? 'Edit Profile' : 'Cancel' }}
-      </button>
-      <button type="submit" [disabled]="updateForm.invalid || editable" class="btn btn-primary" *ngIf="!editable">Update Profile</button>
-    </form>
-      
-  </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="email">Email</label>
+                    <input type="email" [readonly]="editable" class="form-control" id="email" formControlName="email"
+                        required>
+                    <div
+                        *ngIf="updateForm.controls['email'].errors && (updateForm.controls['email'].dirty || updateForm.controls['email'].touched)">
+                        <div *ngIf="updateForm.controls['email'].errors['required']">
+                            Email is required.
+                        </div>
+                        <div *ngIf="updateForm.controls['email'].errors['email']" style="color: red;">
+                            Invalid email format.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="phone">Phone</label>
+                    <input type="tel" [readonly]="editable" class="form-control" id="phone" formControlName="phone"
+                        required>
+                    <div
+                        *ngIf="updateForm.controls['phone'].errors && (updateForm.controls['phone'].dirty || updateForm.controls['phone'].touched)">
+                        <div *ngIf="updateForm.controls['phone'].errors['required']">
+                            Phone is required.
+                        </div>
+                        <div *ngIf="updateForm.controls['phone'].errors['pattern']" style="color: red;">
+                            Phone must be a valid Indian phone number.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="gender">Gender</label>
+                    <input type="text" [readonly]="editable" class="form-control" id="gender" formControlName="gender">
+                </div>
+            </div>
+            <div formGroupName="address">
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="houseNo">House No</label>
+                        <input type="text" [readonly]="editable" class="form-control" id="houseNo"
+                            formControlName="houseNo">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="area">Area</label>
+                        <input type="text" [readonly]="editable" class="form-control" id="area" formControlName="area">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="city">City</label>
+                        <input type="text" [readonly]="editable" class="form-control" id="city" formControlName="city">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="landmark">Landmark</label>
+                        <input type="text" [readonly]="editable" class="form-control" id="landmark"
+                            formControlName="landmark">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="pincode">Pincode</label>
+                        <input type="text" [readonly]="editable" class="form-control" id="pincode"
+                            formControlName="pincode">
+                        <div
+                            *ngIf="updateForm.controls['address'].get('pincode')?.errors && (updateForm.controls['address'].get('pincode')?.dirty || updateFormControls['address'].get('pincode')?.touched)">
+                            <div *ngIf="updateForm.controls['address'].get('pincode')?.errors?.['pattern']"
+                                style="color: red;">
+                                Pincode must be a valid Indian pincode.
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="password">New Password</label>
+                    <input type="password" class="form-control" id="password" formControlName="password">
+                    <div
+                        *ngIf="updateForm.controls['password'].errors && (updateForm.controls['password'].dirty || updateForm.controls['password'].touched)">
+
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary" (click)="toggleEditable()">
+                {{ editable ? 'Edit Profile' : 'Cancel' }}
+            </button>
+            <button type="submit" [disabled]="updateForm.invalid || editable" class="btn btn-primary"
+                *ngIf="!editable">Update Profile</button>
+        </form>
+
+    </div>
 </div>
 <div class="bottom-left-image">
-  <img src="../../../assets/sanswhich1.jpg" alt="Image Description" style="width: 300px; height: 500px;">
+    <img src="../../../assets/sanswhich1.jpg" alt="Image Description" style="width: 300px; height: 500px;">
 </div>
 <div class="bottom-right-image">
-  <img src="../../../assets/girl.jpg" alt="Image Description" style="width: 300px; height: 450px;">
+    <img src="../../../assets/girl.jpg" alt="Image Description" style="width: 300px; height: 450px;">
 </div>

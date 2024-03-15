@@ -8,8 +8,10 @@
 
 <body>
   <div class="menu-wrapper">
+    <button class="toggle-button" (click)="toggleMenu()"><i class="fa fa-bars"></i></button>
+
     <div class="sidebar-header">
-      <div class="sideBar">
+      <div class="sideBar" [ngClass]="{'showMenu': isMenuOpen}">
         <ul>
           <li style="font-size:x-large; text-align:justify; margin-top: 6px;">
             <a routerLink="/manager-dashboard/display-menuitems">
