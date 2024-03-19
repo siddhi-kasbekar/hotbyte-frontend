@@ -64,7 +64,7 @@ export class CustomerService {
 
   placeOrder(customerId: number,requestBody:any): Observable<any> {
    
-    return this.http.post<any>("http://localhost:8080/api/v1/order/placeOrder"+`/${customerId}`, requestBody,{ headers: this.getHeaders() });
+    return this.http.post<any>("http://localhost:8080/api/v1/order/placeOrder"+`/${customerId}`, requestBody,{ headers: this.getHeaders(),responseType: 'text' as 'json' });
   }
 
   searchMenuByCategory( restaurantId: number,category: string): Observable<MenuItem[]> {
